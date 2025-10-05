@@ -1,0 +1,19 @@
+# Ignore build artifacts and OS files
+*.deb
+*.tar.gz
+*.tar.xz
+*.zip
+*.pyc
+__pycache__/
+build/
+dist/
+.DS_Store
+*.swp
+*.swo
+*.log
+llama.cpp/build/
+llama.cpp/models/
+firefox-custom/source/firefox-115.0/
+vox-deb/opt/vox/llama_bin.list
+vox-deb/opt/vox/llama_models.list
+vox-deb/opt/vox/README.txt

@@ -1,0 +1,9 @@
+Package: vox-browser
+Version: 1.0.0
+Section: web
+Priority: optional
+Architecture: arm64
+Depends: python3, python3-tk, git, build-essential, curl, cmake, libcurl4-openssl-dev, python3-pip
+Maintainer: Vox Team <support@vox.local>
+Description: Vox - Private, Proton-integrated, Tor-routed browser with local AI
+ Sleek, modern, and fully private browser for Debian ARM64. Includes Proton integration, Tor routing, customizable UI, and local AI assistant.

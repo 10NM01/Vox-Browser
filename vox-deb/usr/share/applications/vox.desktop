@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Vox Browser
+Comment=Private, Proton-integrated, Tor-routed browser with local AI
+Exec=/opt/vox/vox.sh
+Icon=vox
+Terminal=false
+Categories=Network;WebBrowser;AI;
+StartupNotify=true
