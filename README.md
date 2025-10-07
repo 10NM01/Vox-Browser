@@ -31,7 +31,7 @@ dpkg-deb --build .
 - `llama.cpp/` — AI engine and models
 
 ## Contributing
-Open source contributions are welcome! See LICENSE for details.
+This is free to contribute as you like, just please credit me.
 
 ## License
-MIT (or specify your license)
+MIT
