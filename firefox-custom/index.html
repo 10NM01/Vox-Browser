@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vox Browser</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="browser-container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="logo">
+                <span class="logo-text">VOX</span>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="back-btn" title="Back">←</button>
+                <button class="control-btn" id="forward-btn" title="Forward">→</button>
+                <button class="control-btn" id="refresh-btn" title="Refresh">⟳</button>
+                <button class="control-btn" id="home-btn" title="Home">⌂</button>
+            </div>
+            <div class="address-bar-container">
+                <input type="text" id="address-bar" class="address-bar" placeholder="Enter URL or search (DuckDuckGo)...">
+                <button class="go-btn" id="go-btn">Go</button>
+            </div>
+            <div class="status-indicators">
+                <div class="indicator" id="tor-indicator" title="Tor">
+                    <span class="indicator-icon">🌐</span>
+                    <span class="indicator-label">Tor</span>
+                </div>
+                <div class="indicator" id="proton-indicator" title="Proton VPN">
+                    <span class="indicator-icon">🔐</span>
+                    <span class="indicator-label">Proton</span>
+                </div>
+                <button class="vguard-btn" id="vguard-btn" title="vGuard Security Dashboard">
+                    <svg class="vguard-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L4 5V11C4 16.55 7.16 21.74 12 23C16.84 21.74 20 16.55 20 11V5L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 8V12M12 16H12.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <text x="12" y="14" text-anchor="middle" fill="white" font-size="8" font-weight="bold">V</text>
+                    </svg>
+                </button>
+                <button class="interactive-btn" id="interactive-btn" title="Interactive Mode (Beta)">⚡</button>
+                <button class="ai-btn" id="ai-btn" title="AI Assistant">🤖</button>
+            </div>
+        </div>
+
+        <!-- vGuard Security Dashboard -->
+        <div class="vguard-panel" id="vguard-panel">
+            <div class="vguard-header">
+                <div class="vguard-logo">
+                    <svg class="vguard-shield" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L4 5V11C4 16.55 7.16 21.74 12 23C16.84 21.74 20 16.55 20 11V5L12 2Z" fill="white"/>
+                        <text x="12" y="16" text-anchor="middle" fill="black" font-size="10" font-weight="900">V</text>
+                    </svg>
+                    <h3>vGuard Security</h3>
+                </div>
+                <div class="vguard-toggle">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="vguard-enabled" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <button class="close-btn" id="close-vguard-btn">×</button>
+            </div>
+            <div class="vguard-content">
+                <div class="vguard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="ads-blocked">0</div>
+                        <div class="stat-label">Ads Blocked</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="trackers-blocked">0</div>
+                        <div class="stat-label">Trackers Blocked</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-blocked">0</div>
+                        <div class="stat-label">Total Blocked</div>
+                    </div>
+                </div>
+                <div class="vguard-tor-status">
+                    <h4>Tor Status</h4>
+                    <div class="tor-status-indicator" id="tor-status-indicator">
+                        <div class="status-dot" id="tor-status-dot"></div>
+                        <span id="tor-status-text">Checking...</span>
+                    </div>
+                </div>
+                <div class="vguard-actions">
+                    <button class="vguard-action-btn" id="reset-stats-btn">Reset Stats</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Mode Panel -->
+        <div class="interactive-panel" id="interactive-panel">
+            <div class="interactive-header">
+                <div class="interactive-title">
+                    <h3>Interactive Mode (Beta)</h3>
+                    <span class="beta-badge">BETA</span>
+                </div>
+                <button class="close-btn" id="close-interactive-btn">×</button>
+            </div>
+            <div class="interactive-content">
+                <div class="interactive-status" id="interactive-status">
+                    <div class="status-indicator">
+                        <div class="status-dot" id="interactive-status-dot"></div>
+                        <span id="interactive-status-text">Ready</span>
+                    </div>
+                </div>
+                <div class="interactive-chat" id="interactive-chat">
+                    <div class="interactive-message">
+                        <p><strong>Interactive Mode</strong> allows the AI to control your browser and perform tasks.</p>
+                        <p>Examples:</p>
+                        <ul>
+                            <li>"Navigate to example.com"</li>
+                            <li>"Search for pizza delivery"</li>
+                            <li>"Fill in the form with my name"</li>
+                            <li>"Click the submit button"</li>
+                        </ul>
+                        <p class="warning-text">⚠️ This is a beta feature. The AI may make mistakes. Use at your own risk.</p>
+                    </div>
+                </div>
+                <div class="interactive-input-container">
+                    <input type="text" id="interactive-input" class="interactive-input" placeholder="Tell me what to do...">
+                    <button class="interactive-send-btn" id="interactive-send-btn">Execute</button>
+                </div>
+                <div class="interactive-history" id="interactive-history">
+                    <h4>Task History</h4>
+                    <div class="history-list" id="history-list"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer Modal -->
+        <div class="disclaimer-modal" id="disclaimer-modal">
+            <div class="disclaimer-content">
+                <h2>⚠️ Interactive Mode (Beta) Disclaimer</h2>
+                <div class="disclaimer-text">
+                    <p><strong>Important Notice:</strong></p>
+                    <ul>
+                        <li>Interactive Mode is a <strong>beta feature</strong> and is not perfect</li>
+                        <li>The AI agent may make mistakes or misinterpret your instructions</li>
+                        <li>Always review actions before confirming sensitive operations (purchases, form submissions, etc.)</li>
+                        <li>We are <strong>not liable</strong> for any actions taken by the AI agent</li>
+                        <li>Use at your own risk and discretion</li>
+                        <li>This feature processes everything <strong>locally</strong> on your device</li>
+                    </ul>
+                    <p class="disclaimer-warning">By using Interactive Mode, you acknowledge that you understand these limitations and agree to use this feature responsibly.</p>
+                </div>
+                <div class="disclaimer-actions">
+                    <label class="disclaimer-checkbox">
+                        <input type="checkbox" id="disclaimer-accept">
+                        <span>I understand and agree to use Interactive Mode responsibly</span>
+                    </label>
+                    <div class="disclaimer-buttons">
+                        <button class="disclaimer-btn cancel" id="disclaimer-cancel">Cancel</button>
+                        <button class="disclaimer-btn accept" id="disclaimer-accept-btn" disabled>Accept & Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Assistant Panel -->
+        <div class="ai-panel" id="ai-panel">
+            <div class="ai-panel-header">
+                <h3>AI Assistant</h3>
+                <button class="close-btn" id="close-ai-btn">×</button>
+            </div>
+            <div class="ai-chat" id="ai-chat">
+                <div class="ai-message assistant">
+                    <p>Hello! I'm your local AI assistant. How can I help you today?</p>
+                </div>
+            </div>
+            <div class="ai-input-container">
+                <input type="text" id="ai-input" class="ai-input" placeholder="Ask me anything...">
+                <button class="ai-send-btn" id="ai-send-btn">Send</button>
+            </div>
+            <div class="ai-features">
+                <button class="ai-feature-btn" id="ai-interactive-mode-btn">
+                    <span>⚡</span> Try Interactive Mode (Beta)
+                </button>
+            </div>
+        </div>
+
+        <!-- Web View -->
+        <div class="webview-container">
+            <webview id="webview" src="about:blank" allowpopups></webview>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span id="status-text">Ready</span>
+            <span id="connection-status" class="connection-status">Disconnected</span>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
+

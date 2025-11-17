@@ -1,0 +1,112 @@
+{
+  "name": "vox-browser",
+  "version": "1.0.0",
+  "description": "Vox Browser - A private, Proton-integrated, Tor-routed browser with local AI assistant",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-all": "electron-builder --win --linux --mac",
+    "build-win": "electron-builder --win",
+    "build-linux": "electron-builder --linux",
+    "build-deb": "electron-builder --linux deb",
+    "build-deb-arm64": "electron-builder --linux deb --arm64",
+    "build-deb-amd64": "electron-builder --linux deb --x64",
+    "build-rpm": "electron-builder --linux rpm",
+    "build-rpm-arm64": "electron-builder --linux rpm --arm64",
+    "build-rpm-amd64": "electron-builder --linux rpm --x64",
+    "build-win-x64": "electron-builder --win --x64",
+    "build-win-x86": "electron-builder --win --ia32",
+    "build-mac": "electron-builder --mac",
+    "build-mac-x64": "electron-builder --mac --x64",
+    "build-mac-arm64": "electron-builder --mac --arm64"
+  },
+  "keywords": [
+    "browser",
+    "privacy",
+    "tor",
+    "proton",
+    "ai"
+  ],
+  "author": "variable.tech.dev@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "socks-proxy-agent": "^8.0.2",
+    "tor-request": "^3.1.0"
+  },
+  "build": {
+    "appId": "com.vox.browser",
+    "productName": "Vox Browser",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules/**/*",
+      "node_modules/electron/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "deb",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "rpm",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "AppImage",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "category": "Network",
+      "desktop": {
+        "Name": "Vox Browser",
+        "Comment": "Private browser with Tor and Proton integration",
+        "Categories": "Network;WebBrowser;",
+        "MimeType": "text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;"
+      },
+      "icon": "assets/icon.png"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "category": "public.app-category.utilities",
+      "icon": "assets/icon.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
+

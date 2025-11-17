@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vox Browser Installer</title>
+    <link rel="stylesheet" href="installer.css">
+</head>
+<body>
+    <div class="installer-container">
+        <!-- Header -->
+        <div class="installer-header">
+            <div class="logo-section">
+                <span class="logo-text">VOX</span>
+            </div>
+            <div class="stage-indicator">
+                <div class="stage-dot active" id="stage-1-dot"></div>
+                <div class="stage-line"></div>
+                <div class="stage-dot" id="stage-2-dot"></div>
+                <div class="stage-line"></div>
+                <div class="stage-dot" id="stage-3-dot"></div>
+                <div class="stage-line"></div>
+                <div class="stage-dot" id="stage-4-dot"></div>
+            </div>
+        </div>
+
+        <!-- Stage 1: Pre-Install - Model Selection -->
+        <div class="stage" id="stage-1">
+            <h2>Pre-Installation Setup</h2>
+            <div class="stage-content">
+                <div class="form-section">
+                    <label for="ai-model-select">Select Local AI Model (Optional):</label>
+                    <select id="ai-model-select" class="form-select">
+                        <option value="none">None - Skip AI features</option>
+                    </select>
+                    <div id="model-info" class="model-info" style="display: none;">
+                        <div class="model-details">
+                            <h4 id="model-name"></h4>
+                            <p id="model-description"></p>
+                            <div class="requirements-grid">
+                                <div class="req-item">
+                                    <span class="req-label">Size:</span>
+                                    <span class="req-value" id="req-size"></span>
+                                </div>
+                                <div class="req-item">
+                                    <span class="req-label">RAM:</span>
+                                    <span class="req-value" id="req-ram"></span>
+                                </div>
+                                <div class="req-item">
+                                    <span class="req-label">VRAM:</span>
+                                    <span class="req-value" id="req-vram"></span>
+                                </div>
+                                <div class="req-item">
+                                    <span class="req-label">Disk:</span>
+                                    <span class="req-value" id="req-disk"></span>
+                                </div>
+                                <div class="req-item">
+                                    <span class="req-label">CPU:</span>
+                                    <span class="req-value" id="req-cpu"></span>
+                                </div>
+                                <div class="req-item">
+                                    <span class="req-label">Speed:</span>
+                                    <span class="req-value" id="req-speed"></span>
+                                </div>
+                            </div>
+                            <p class="model-source">Source: <span id="model-source"></span></p>
+                        </div>
+                    </div>
+                    <p class="form-hint">Choose a local AI model for the assistant. Models are downloaded from trusted sources (Hugging Face).</p>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                    <button class="btn btn-primary" id="continue-to-confirm-btn">Continue</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 2: Confirmation -->
+        <div class="stage" id="stage-2" style="display: none;">
+            <h2>Installation Summary</h2>
+            <div class="stage-content">
+                <div class="summary-section">
+                    <h3>Installation Details</h3>
+                    <div class="summary-item">
+                        <span class="summary-label">Browser Size:</span>
+                        <span class="summary-value" id="browser-size">~500 MB</span>
+                    </div>
+                    <div class="summary-item" id="model-summary-item" style="display: none;">
+                        <span class="summary-label">AI Model Size:</span>
+                        <span class="summary-value" id="model-size">-</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Total Space Required:</span>
+                        <span class="summary-value total" id="total-size">~500 MB</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Selected Model:</span>
+                        <span class="summary-value" id="selected-model-name">None</span>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-secondary" id="back-to-model-btn">Back</button>
+                    <button class="btn btn-primary" id="confirm-install-btn">Confirm & Install</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 3: Installation -->
+        <div class="stage" id="stage-3" style="display: none;">
+            <h2>Installing Vox Browser</h2>
+            <div class="stage-content">
+                <div class="progress-section">
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                    <p class="progress-text" id="progress-text">Preparing installation...</p>
+                    <div class="progress-percentage" id="progress-percentage">0%</div>
+                    <div class="progress-details" id="progress-details"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stage 4: Post-Install -->
+        <div class="stage" id="stage-4" style="display: none;">
+            <h2>Post-Installation Configuration</h2>
+            <div class="stage-content">
+                <div class="form-section">
+                    <label for="theme-select">Theme:</label>
+                    <select id="theme-select" class="form-select">
+                        <option value="dark">Dark Mode</option>
+                        <option value="light">Light Mode</option>
+                    </select>
+                </div>
+                <div class="form-section">
+                    <label for="tab-layout-select">Tab Layout:</label>
+                    <select id="tab-layout-select" class="form-select">
+                        <option value="horizontal">Horizontal</option>
+                        <option value="vertical">Vertical</option>
+                    </select>
+                </div>
+                <div class="form-section">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="tor-enabled">
+                        <span>Enable Tor Routing</span>
+                    </label>
+                </div>
+                <div class="form-section">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="proton-enabled">
+                        <span>Enable Proton VPN Integration</span>
+                    </label>
+                </div>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="finish-btn">Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="installer-renderer.js"></script>
+</body>
+</html>
+

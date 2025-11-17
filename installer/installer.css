@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: #000000;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.installer-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+/* Header */
+.installer-header {
+    padding: 24px 32px;
+    border-bottom: 1px solid #333333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0a0a0a;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.stage-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stage-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #333333;
+    border: 2px solid #555555;
+    transition: all 0.3s ease;
+}
+
+.stage-dot.active {
+    background: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.stage-line {
+    width: 40px;
+    height: 2px;
+    background: #333333;
+    transition: all 0.3s ease;
+}
+
+.stage-line.active {
+    background: #ffffff;
+}
+
+/* Stage Content */
+.stage {
+    flex: 1;
+    padding: 48px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stage h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.stage-content {
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Form Elements */
+.form-section {
+    margin-bottom: 24px;
+}
+
+.form-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #cccccc;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    color: #ffffff;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.form-select:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.form-select option {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+.form-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #888888;
+    font-style: italic;
+}
+
+/* Model Info Display */
+.model-info {
+    margin-top: 16px;
+    padding: 16px;
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+
+.model-details h4 {
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.model-details > p {
+    color: #cccccc;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.req-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background: #0a0a0a;
+    border-radius: 4px;
+}
+
+.req-label {
+    color: #888888;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.req-value {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.model-source {
+    font-size: 11px;
+    color: #666666;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Summary Section */
+.summary-section {
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.summary-section h3 {
+    color: #ffffff;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #333333;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: #aaaaaa;
+    font-size: 14px;
+}
+
+.summary-value {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.summary-value.total {
+    color: #4a9eff;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* Progress Details */
+.progress-details {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #888888;
+    text-align: center;
+    min-height: 20px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #ffffff;
+}
+
+/* Progress Bar */
+.progress-section {
+    text-align: center;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background: #1a1a1a;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    border: 1px solid #333333;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ffffff 0%, #cccccc 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.progress-text {
+    font-size: 16px;
+    color: #cccccc;
+    margin-bottom: 8px;
+}
+
+.progress-percentage {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 16px;
+    justify-content: flex-end;
+    margin-top: 32px;
+}
+
+.btn {
+    padding: 12px 32px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #cccccc;
+    border-color: #cccccc;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #ffffff;
+    border-color: #555555;
+}
+
+.btn-secondary:hover {
+    background: #1a1a1a;
+    border-color: #777777;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+

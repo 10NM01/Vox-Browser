@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Vox Browser
+Comment=Private browser with Tor and Proton integration
+Exec=/usr/bin/vox-browser
+Icon=vox-browser
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+
